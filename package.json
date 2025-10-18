@@ -1,5 +1,6 @@
-{
-  "TestAddon": {
+[
+  {
+    "id": "TestAddon",
     "name": "Test Addon",
     "description": "An addon for test",
     "labels": "Test",
@@ -11,4 +12,4 @@
       "v0.1.0": ""
     }
   }
-}
+]
