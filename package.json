@@ -1,13 +1,13 @@
 [
   {
-    "id": "TestAddon",
-    "name": "Test Addon",
-    "description": "An addon for test",
-    "labels": "Test",
-    "version": "0.1.0",
-    "icon": "statistic.png",
-    "author": "wumode",
-    "level": 1,
+    "addon_id": "TestAddon",
+    "addon_name": "Test Addon",
+    "addon_desc": "An addon for test",
+    "addon_label": "Test",
+    "addon_version": "0.1.0",
+    "addon_icon": "statistic.png",
+    "addon_author": "wumode",
+    "auth_level": 1,
     "history": {
       "v0.1.0": ""
     }
