@@ -1,0 +1,14 @@
+{
+  "TestAddon": {
+    "name": "Test Addon",
+    "description": "An addon for test",
+    "labels": "Test",
+    "version": "0.1.0",
+    "icon": "statistic.png",
+    "author": "wumode",
+    "level": 1,
+    "history": {
+      "v0.1.0": ""
+    }
+  }
+}
