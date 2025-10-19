@@ -1,3 +1,4 @@
+import yaml
 from mitmproxy import http
 
 from app.addons import _AddonBase
