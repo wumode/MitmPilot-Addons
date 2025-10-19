@@ -11,7 +11,7 @@ from app.log import logger
 class TestAddon(_AddonBase):
     addon_name = "Test Addon"
     addon_order = 1
-    addon_version = "0.1.0"
+    addon_version = "0.1.1"
 
     _enabled = False
     def init_addon(self, config: dict = None):

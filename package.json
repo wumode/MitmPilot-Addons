@@ -4,7 +4,7 @@
     "addon_name": "Test Addon",
     "addon_desc": "An addon for test",
     "addon_label": "Test",
-    "addon_version": "0.1.0",
+    "addon_version": "0.1.1",
     "addon_icon": "statistic.png",
     "addon_author": "wumode",
     "auth_level": 1,
