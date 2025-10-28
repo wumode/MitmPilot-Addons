@@ -3,7 +3,7 @@ from typing import Any
 from mitmproxy import http
 
 from app.addons import _AddonBase
-from app.schemas import HookData
+from app.schemas import HookData, AddonService, AddonApi
 from app.schemas.types import HookEventType
 
 from app.log import logger
@@ -36,17 +36,9 @@ class TestAddon(_AddonBase):
         """
         return "vuetify", None
 
-    def get_api(self) -> list[dict[str, Any]]:
+    def get_api(self) -> list[AddonApi]:
         """
         注册插件API
-        [{
-            "path": "/xx",
-            "endpoint": self.xxx,
-            "methods": ["GET", "POST"],
-            "auth: "apikey",  # 鉴权类型：apikey/bear
-            "summary": "API名称",
-            "description": "API说明"
-        }]
         """
         pass
 
@@ -65,18 +57,20 @@ class TestAddon(_AddonBase):
         """
         pass
 
-    def get_service(self) -> list[dict[str, Any]]:
+    def get_service(self) -> list[AddonService]:
         """
         注册插件公共服务
-        [{
-            "id": "服务ID",
-            "name": "服务名称",
-            "trigger": "触发器：cron/interval/date/CronTrigger.from_crontab()",
-            "func": self.xxx,
-            "kwargs": {} # 定时器参数
-        }]
         """
-        pass
+        return [
+            AddonService(
+                id=f'{self.__class__.__name__}.{self.test_service.__name__}',
+                name=f"{self.test_service.__name__}",
+                trigger="cron",
+                func=self.test_service,
+                kwargs={'cron':'* * * * *'},
+                func_kwargs={'p': "hello"}
+            )
+        ]
 
     def get_hooks(self) -> dict[HookEventType, list[HookData]]:
         return {
@@ -100,3 +94,6 @@ class TestAddon(_AddonBase):
 
     async def misskey_response(self, flow: http.HTTPFlow):
         logger.info(f"{self.addon_name} {flow.request.pretty_host} async")
+
+    async def test_service(self, p: str):
+        logger.info(f"{self.addon_name}: {p}")
