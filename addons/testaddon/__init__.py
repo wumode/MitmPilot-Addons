@@ -67,7 +67,7 @@ class TestAddon(_AddonBase):
                 name=f"{self.test_service.__name__}",
                 trigger="cron",
                 func=self.test_service,
-                kwargs={'cron':'* * * * *'},
+                kwargs={'minute':'*'},
                 func_kwargs={'p': "hello"}
             )
         ]
