@@ -5,8 +5,8 @@ from mitmproxy import http
 from app.addons import _AddonBase
 from app.schemas import HookData, AddonService, AddonApi
 from app.schemas.types import HookEventType
-
 from app.log import logger
+from app.core.cache import cached
 
 
 class TestAddon(_AddonBase):
@@ -21,6 +21,7 @@ class TestAddon(_AddonBase):
             self._enabled = config.get('enabled')
         self.update_config({'enabled': self._enabled})
         self.save_data('data', {1:1, 2:2})
+        logger.info(f"cache test: {self.cache_test()}")
 
     def get_state(self) -> bool:
         """
@@ -97,3 +98,7 @@ class TestAddon(_AddonBase):
 
     async def test_service(self, p: str):
         logger.info(f"{self.addon_name}: {p}")
+
+    @cached(maxsize=1, ttl=3600)
+    def cache_test(self) -> str:
+        return "cache string"
